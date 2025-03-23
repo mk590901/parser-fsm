@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'client_helper.dart';
+import 'parser_state_machine/operators.dart';
+import 'parser_state_machine/parser_controller.dart';
+
 void main() {
+  ClientHelper.initInstance();
   runApp(const MyApp());
 }
 
@@ -63,7 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      //_counter++;
+
+      ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
+      ClientHelper.instance()?.setController(parserController);
+      parserController.parse();
+
     });
   }
 

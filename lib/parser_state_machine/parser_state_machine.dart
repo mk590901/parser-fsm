@@ -1,19 +1,28 @@
+import 'dart:async';
+
 import '../../core/basic_state_machine.dart';
 import '../../core/event.dart';
 import '../../core/state.dart';
 import '../../core/trans.dart';
+import 'parser_controller.dart';
 import 'parser_trans_methods.dart';
 import 'parser_events.dart';
 import 'parser_states.dart';
 
 class ParserStateMachine extends BasicStateMachine {
+  ParserController? controller;
+
   ParserStateMachine(super.currentState);
+
+  void setController(ParserController? controller) {
+    this.controller = controller;
+  }
 
   @override
   void create() {
 
-    states_ [ParserState.state_(ParserStates.IDLE)]           = State([ Trans(NextChar(),       ParserState.state_(ParserStates.WAIT_NEXT_CHAR),  getNextChar()),
-                                                                        Trans(Init(),           ParserState.state_(ParserStates.IDLE),  onInit()),
+    states_ [ParserState.state_(ParserStates.IDLE)]           = State([ Trans(NextChar(),       ParserState.state_(ParserStates.WAIT_NEXT_CHAR),    getNextChar()),
+                                                                        Trans(Init(),           ParserState.state_(ParserStates.IDLE),              onInit()),
                                                                       ]);
 
     states_[ParserState.state_(ParserStates.WAIT_NEXT_CHAR)]  = State([ Trans(InvisibleChar(),  ParserState.state_(ParserStates.WAIT_NEXT_CHAR),     getNextChar()),
@@ -39,7 +48,7 @@ class ParserStateMachine extends BasicStateMachine {
                                                                           Trans(DetectToken(),    ParserState.state_(ParserStates.END_TOKEN),          setToken()),
                                                                           Trans(ValidChar(),      ParserState.state_(ParserStates.END_TOKEN),          setToken2()),
                                                                           Trans(InvalidChar(),    ParserState.state_(ParserStates.ERROR),              setError()),
-                                                                          Trans(Init(),           ParserState.state_(ParserStates.WAIT_NEXT_CHAR), onInit())
+                                                                          Trans(Init(),           ParserState.state_(ParserStates.WAIT_NEXT_CHAR),    onInit())
                                                                         ]);
 
     states_[ParserState.state_(ParserStates.END_TOKEN)]       = State([ Trans(NextChar(),       ParserState.state_(ParserStates.WAIT_NEXT_CHAR),     getNextChar()),
@@ -80,8 +89,8 @@ class ParserStateMachine extends BasicStateMachine {
     // TODO: implement setFilter
   }
 
-  void postEvent(Event event) {
-  }
+  // void postEvent(Event event) {
+  // }
 
 
 }

@@ -1,41 +1,40 @@
 
 
+import 'dart:collection';
 import 'dart:core';
 
 import '../core/event.dart';
 import 'interfaces.dart';
 import 'operators.dart';
+import 'parser_bloc.dart';
 import 'parser_events.dart';
 import 'parser_state_machine.dart';
+import 'parser_states.dart';
 
 class ParserController {
   static const String TAG = "ParserController";
 
-  String? source;
+  final String source;
   int index = 0;
-  String currentChar = '\0';
+  String currentChar = '';
   String token = "";
-  Operators? operators;
+  final Operators? operators;
   IFunctor? result;
   Tokens tokens = Tokens();
-  ParserStateMachine? stateMachine;
 
-  ParserController(String sourceLine, Operators this.operators) {
-    source = sourceLine;
+  ParserStateMachine? stateMachine;// = ParserStateMachine(ParserStates.IDLE.index);
+  //ParserBloc? bloc;
+
+  //final Queue<Event>	_eventsQueue	= Queue<Event>();
+
+  ParserController(this.source, Operators this.operators) {
+    //bloc = ParserBloc(this, ParserState(ParserStates.IDLE));
+    stateMachine = ParserStateMachine(ParserStates.IDLE.index);
+    (stateMachine as ParserStateMachine).setController(this);
     init();
   }
 
-  ParserStateMachine? getStateMachine() => stateMachine;
-
-  void setStateMachine(ParserStateMachine stateMachine) {
-    this.stateMachine = stateMachine;
-  }
-
   String? getSource() => source;
-
-  void setSource(String source) {
-    this.source = source;
-  }
 
   int getIndex() => index;
 
@@ -43,10 +42,14 @@ class ParserController {
     this.index = index;
   }
 
-  String getCurrentChar() => currentChar;
+  String getCurrentChar() {
+    //print ('ParserController.getCurrentChar->[$currentChar]');
+    return currentChar;
+  }
 
   void setCurrentChar(String currentChar) {
     this.currentChar = currentChar;
+    //print ('ParserController.setCurrentChar->[$currentChar]');
   }
 
   String getToken() => token;
@@ -57,6 +60,7 @@ class ParserController {
 
   void addToken(String symbol) {
     token += symbol;
+    //print ('addToken->[$token]');
   }
 
   IFunctor? getResult() => result;
@@ -66,10 +70,6 @@ class ParserController {
   }
 
   Operators? getOperators() => operators;
-
-  void setOperators(Operators operators) {
-    this.operators = operators;
-  }
 
   void trace(String message) {
     // Log.d(TAG, message);
@@ -105,9 +105,11 @@ class ParserController {
   }
 
   void setToken_() {
-    trace2('ParserController.setToken  [$token](${getTokenType(token)})');
+    trace('ParserController.setToken  [$token](${getTokenType(token)})');
     tokens.add(createToken(token));
     setToken("");
+    //stateMachine?.postEvent(NextChar());
+    //bloc?.add(NextChar());
     stateMachine?.postEvent(NextChar());
   }
 
@@ -116,6 +118,8 @@ class ParserController {
     tokens.add(createToken(token));
     setToken("");
     setIndex(getIndex() - 1);
+    //stateMachine?.postEvent(NextChar());
+    //bloc?.add(NextChar());
     stateMachine?.postEvent(NextChar());
   }
 
@@ -144,6 +148,8 @@ class ParserController {
 
   void initToken() {
     setToken("");
+    //stateMachine?.postEvent(checkCharacter(getCurrentChar()));
+    //bloc?.add(checkCharacter(getCurrentChar()));
     stateMachine?.postEvent(checkCharacter(getCurrentChar()));
   }
 
@@ -157,15 +163,20 @@ class ParserController {
   }
 
   void getNewChar() {
-    if (index >= source!.length) {
+    //trace("ParserController.getNewChar [$index]");
+    if (index >= source.length) {
       trace("ParserController.getNewChar->[EOL]");
+      //stateMachine?.postEvent(Eol());
+      //bloc?.add(Eol());
       stateMachine?.postEvent(Eol());
       return;
     }
-    setCurrentChar(source![index]);
+    setCurrentChar(source[index]);
     index++;
-    Event test = checkCharacter(getCurrentChar());
-    stateMachine?.postEvent(test);
+    Event testEvent = checkCharacter(getCurrentChar());
+    //print('testEvent->[$testEvent]');
+    //bloc?.add(testEvent);
+    stateMachine?.postEvent(testEvent);
   }
 
   Event checkCharacter(String currentChar) {
@@ -185,7 +196,29 @@ class ParserController {
   Tokens getTokens() {
     return tokens;
   }
+
+  void parse() {
+    //bloc?.add(NextChar());
+    stateMachine?.postEvent(NextChar());
+  }
+
+  // void postEvent(Event event) {
+  //   //print('post.addQueue [$event($data)]');
+  //   //scheduleMicrotask(() {  //  ?
+  //   _eventsQueue.add(event);
+  //   while (_eventsQueue.isNotEmpty) {
+  //     Event event_ = _eventsQueue.removeFirst();
+  //     //print('post event [${eventWrapper.event()}, ${eventWrapper.data()}]');
+  //     bloc?.add(event_);
+  //     //print ('postEvent->[$event]');
+  //   }
+  //   //}); //  ?
+  // }
+
+
 }
+
+
 
 // Assuming these classes/methods are defined somewhere in your code
 // class ParserStateMachine {

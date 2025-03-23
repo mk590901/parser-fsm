@@ -1,9 +1,12 @@
 import '../../core/interfaces/i_transition_method.dart';
+import '../client_helper.dart';
+import 'parser_controller.dart';
 
 class getNextChar implements ITransitionMethod {
   @override
-  void execute([var hashMap]) {
-    print("@getNextChar $hashMap");
+  void execute([var data]) {
+    //print("@getNextChar $data");
+    ClientHelper.instance()?.controller()?.getNewChar();
   }
 }
 
@@ -33,15 +36,17 @@ class stop implements ITransitionMethod {
 class initToken implements ITransitionMethod {
   @override
   void execute([var data]) {
-    print("@initToken $data");
+    //print("@initToken $data");
+    ClientHelper.instance()?.controller()?.initToken();
   }
 }
 
 class setToken implements ITransitionMethod {
   @override
   void execute([var data]) {
-    print("@setToken $data");
-    data?.call();
+    //print("@setToken $data");
+    ClientHelper.instance()?.controller()?.setToken_();
+    //data?.call();
   }
 }
 
@@ -55,78 +60,8 @@ class setToken2 implements ITransitionMethod {
 class accumulateToken implements ITransitionMethod {
   @override
   void execute([var data]) {
-    print("@accumulateToken $data");
-  }
-}
-
-class OnSuccess implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnSuccess $data");
-    data?.call();
-  }
-}
-
-class OnUp implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnUp $data");
-  }
-}
-
-class OnDisableOff implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnDisableOff $data");
-  }
-}
-
-class OnDisableOn implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnDisableOn $data");
-  }
-}
-
-class OnEnableOff implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnEnableOff $data");
-  }
-}
-
-class OnEnableOn implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnEnableOn $data");
-  }
-}
-
-class OnDisable implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    //print("@OnDisable $data");
-  }
-}
-
-class OnEnable implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnEnable $data");
-  }
-}
-
-class OnPress implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnPress $data");
-  }
-}
-
-class OnUnpress implements ITransitionMethod {
-  @override
-  void execute([var data]) {
-    print("@OnUnpress $data");
+    //print("@accumulateToken $data");
+    ClientHelper.instance()?.controller()?.accumulateToken();
   }
 }
 

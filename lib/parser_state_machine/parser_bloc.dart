@@ -1,15 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/basic_state_machine.dart';
 import '../../core/event.dart';
+import 'parser_controller.dart';
 import 'parser_events.dart';
 import 'parser_state_machine.dart';
 import 'parser_states.dart';
 
 class ParserBloc extends Bloc<Event, ParserState> {
   BasicStateMachine? _stateMachine;
-  
-  ParserBloc(ParserState initialState) : super(initialState) {
+  ParserController? parserController;
+
+  ParserBloc(this.parserController, ParserState initialState) : super(initialState) {
     _stateMachine = ParserStateMachine(initialState.state().index);
+    (_stateMachine as ParserStateMachine).setController(parserController);
+
     on<Eol>((event, emit) {
       done(event, emit);
     });

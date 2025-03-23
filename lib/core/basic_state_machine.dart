@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../core/event.dart';
 import '../core/state.dart';
 import 'transaction.dart';
@@ -11,11 +13,29 @@ abstract class BasicStateMachine {
   late IntFilter? filter;
   final Map<int, State> states_ = <int, State>{};
 
+  final _eventController = StreamController<Event>.broadcast();
+  late StreamSubscription _subscription;
+
 //  Constructor
   BasicStateMachine(this._currentState) {
     filter = null;
     setFilter();
     create();
+    createHandler();
+  }
+
+  void createHandler() {
+    _subscription = _eventController.stream.listen((event) {
+      execute(event);
+    });
+  }
+
+  void execute(Event event) {
+    dispatch(event);
+  }
+
+  void postEvent(Event event) {
+    _eventController.add(event);
   }
 
   int dispatch(Event event) {
