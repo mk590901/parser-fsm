@@ -1,4 +1,5 @@
 import 'interfaces.dart';
+import 'operator.dart';
 
 class Operators {
   final Map<String, Operator> container = {};
@@ -59,23 +60,6 @@ class Operators {
   void addUnaryOperation(String operationName, int precedence, IOperation? operation) {
     container[operationName] = Operator(this, operationName, OperationType.UnaryOperation, precedence, operation);
   }
-}
-
-// Assuming these classes/methods are defined somewhere in your code
-class Operator {
-  String name;
-  OperationType type;
-  IOperation? operation;
-  int precedence;
-  Operators? parent;
-
-  Operator(this.parent, this.name, this.type, this.precedence, this.operation);
-
-  String getName() => name;
-  OperationType getType() => type;
-  IOperation? getOperation() => operation;
-  Operators? getParent() => parent;
-  int getPrecedence() => precedence;
 }
 
 // Placeholder classes for operations

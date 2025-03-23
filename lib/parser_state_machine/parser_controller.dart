@@ -2,11 +2,10 @@
 
 import 'dart:core';
 
-import 'package:parser/parset_state_machine/parser_events.dart';
-
 import '../core/event.dart';
 import 'interfaces.dart';
 import 'operators.dart';
+import 'parser_events.dart';
 import 'parser_state_machine.dart';
 
 class ParserController {
@@ -21,9 +20,8 @@ class ParserController {
   Tokens tokens = Tokens();
   ParserStateMachine? stateMachine;
 
-  ParserController(String sourceLine, Operators operators) {
+  ParserController(String sourceLine, Operators this.operators) {
     source = sourceLine;
-    this.operators = operators;
     init();
   }
 
@@ -133,7 +131,7 @@ class ParserController {
         result = TokenConstant(tokenName);
       }
     }
-    return result!;
+    return result;
   }
 
   String getTokenType(String token) {
@@ -190,29 +188,17 @@ class ParserController {
 }
 
 // Assuming these classes/methods are defined somewhere in your code
-class ParserStateMachine {
-  void postEvent(Event event) {
-    // Implementation here
-  }
-}
+// class ParserStateMachine {
+//   void postEvent(Event event) {
+//     // Implementation here
+//   }
+// }
 
-class Operators {
-  bool contains(String name) {
-    // Implementation here
-    return false;
-  }
-
-  bool containsPartially(String token) {
-    // Implementation here
-    return false;
-  }
-}
-
-class IFunctor {
-  void execute() {
-    // Implementation here
-  }
-}
+// class IFunctor {
+//   void execute() {
+//     // Implementation here
+//   }
+//}
 
 class Tokens {
   void add(IToken token) {
