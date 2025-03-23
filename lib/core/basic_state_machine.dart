@@ -30,6 +30,10 @@ abstract class BasicStateMachine {
     });
   }
 
+  void dispose() {
+    _eventController.close();
+  }
+
   void execute(Event event) {
     dispatch(event);
   }

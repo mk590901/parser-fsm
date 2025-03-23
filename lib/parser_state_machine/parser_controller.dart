@@ -34,6 +34,10 @@ class ParserController {
     init();
   }
 
+  void dispose() {
+    stateMachine?.dispose();
+  }
+
   String? getSource() => source;
 
   int getIndex() => index;

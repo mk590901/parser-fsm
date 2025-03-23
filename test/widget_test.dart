@@ -12,12 +12,18 @@ import 'package:parser/parser_state_machine/parser_controller.dart';
 
 void main() {
 // All tests
-  test('ParserController', () {
+  test('ParserController', () async {
     ClientHelper.initInstance();
     ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
     expect(parserController,isNotNull);
     ClientHelper.instance()?.setController(parserController);
     parserController.parse();
+    expect(parserController.token,'');
+
+    Future.delayed(Duration(seconds: 5));
+
+
+    //parserController.dispose();
     // int x = 0;
     // int y = x;
   });
