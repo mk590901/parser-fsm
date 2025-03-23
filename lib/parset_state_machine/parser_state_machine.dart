@@ -6,53 +6,6 @@ import 'parser_trans_methods.dart';
 import 'parser_events.dart';
 import 'parser_states.dart';
 
-/*
-    private void create()
-    {
-        states.put(State.State_IDLE,            new StateEntity  (  new TransitionSM(ParserController.Event.NextChar,       State.State_WAIT_NEXT_CHAR,     getNextChar),
-                                                                    new TransitionSM(ParserController.Event.Init,           State.State_IDLE,               init))
-        );
-
-        states.put(State.State_WAIT_NEXT_CHAR,  new StateEntity  (  new TransitionSM(ParserController.Event.InvisibleChar,  State.State_WAIT_NEXT_CHAR,     getNextChar),
-                                                                    new TransitionSM(ParserController.Event.InvalidChar,    State.State_ERROR,              setError),
-                                                                    new TransitionSM(ParserController.Event.Eol,            State.State_STOP,               stop),
-                                                                    new TransitionSM(ParserController.Event.ValidChar,      State.State_ACCUMULATE_TOKEN,   initToken),
-                                                                    new TransitionSM(ParserController.Event.KeywordChar,    State.State_ACCUMULATE_KEYWORD, initToken),
-                                                                    new TransitionSM(ParserController.Event.Init,           State.State_WAIT_NEXT_CHAR,     init))
-                );
-
-        states.put(State.State_ACCUMULATE_TOKEN,new StateEntity  (  new TransitionSM(ParserController.Event.InvisibleChar,  State.State_END_TOKEN,          setToken),
-                                                                    new TransitionSM(ParserController.Event.KeywordChar,    State.State_END_TOKEN,          setToken2),
-                                                                    new TransitionSM(ParserController.Event.Eol,            State.State_END_TOKEN,          setToken),
-                                                                    new TransitionSM(ParserController.Event.DetectToken,    State.State_END_TOKEN,          setToken),
-                                                                    new TransitionSM(ParserController.Event.ValidChar,      State.State_ACCUMULATE_TOKEN,   accumulateToken),
-                                                                    new TransitionSM(ParserController.Event.InvalidChar,    State.State_ERROR,              setError),
-                                                                    new TransitionSM(ParserController.Event.Init,           State.State_WAIT_NEXT_CHAR,     init))
-                );
-
-        states.put(State.State_ACCUMULATE_KEYWORD,new StateEntity(  new TransitionSM(ParserController.Event.InvisibleChar,  State.State_END_TOKEN,          setToken),
-                                                                    new TransitionSM(ParserController.Event.KeywordChar,    State.State_ACCUMULATE_KEYWORD, accumulateToken),
-                                                                    new TransitionSM(ParserController.Event.Eol,            State.State_END_TOKEN,          setToken),
-                                                                    new TransitionSM(ParserController.Event.DetectToken,    State.State_END_TOKEN,          setToken),
-                                                                    new TransitionSM(ParserController.Event.ValidChar,      State.State_END_TOKEN,          setToken2),
-                                                                    new TransitionSM(ParserController.Event.InvalidChar,    State.State_ERROR,              setError),
-                                                                    new TransitionSM(ParserController.Event.Init,           State.State_WAIT_NEXT_CHAR,     init))
-        );
-
-        states.put(State.State_END_TOKEN,       new StateEntity  (  new TransitionSM(ParserController.Event.NextChar,       State.State_WAIT_NEXT_CHAR,     getNextChar),
-                                                                    new TransitionSM(ParserController.Event.Init,           State.State_WAIT_NEXT_CHAR,     init))
-                );
-
-        states.put(State.State_ERROR,           new StateEntity  (  new TransitionSM(ParserController.Event.Init,           State.State_WAIT_NEXT_CHAR,     init))
-                );
-
-        states.put(State.State_STOP,            new StateEntity  (  new TransitionSM(ParserController.Event.Init,           State.State_WAIT_NEXT_CHAR,     init))
-                );
-
-    }
-
- */
-
 class ParserStateMachine extends BasicStateMachine {
   ParserStateMachine(super.currentState);
 

@@ -1,18 +1,6 @@
 //  Parser events
 import '../../core/event.dart';
 
-/*
-        Eol,
-        InvalidChar,
-        InvisibleChar,
-        ValidChar,
-        KeywordChar,
-        DetectToken,
-        NextChar,
-        Init;
-
- */
-
 class Eol<T> extends Event<T> {
   T? _data;
   Eol([this._data]);
