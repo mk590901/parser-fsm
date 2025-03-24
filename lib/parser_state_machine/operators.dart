@@ -46,10 +46,18 @@ class Operators {
     addBinaryOperation("!=",  4, opNe());
     addBinaryOperation("<>",  4, opNe());
     addBinaryOperation("&&",  3, opAnd());
+
+    addBinaryOperation("*",   3, opMul());
+    addBinaryOperation("/",   3, opDiv());
+
     addBinaryOperation("<",   4, opLt());
     addBinaryOperation(">",   4, opGt());
     addBinaryOperation(">=",  4, opGe());
     addBinaryOperation("<=",  4, opLe());
+
+    addBinaryOperation("+",   4, opPlus());
+    addBinaryOperation("-",   4, opMinus());
+
     addBinaryOperation("||",  2, opOr());
   }
 
@@ -120,6 +128,38 @@ class opLe implements IOperation {
 }
 
 class opOr implements IOperation {
+  @override
+  String execute(List<String> parameters) {
+    // Implementation here
+    return "";
+  }
+}
+
+class opPlus implements IOperation {
+  @override
+  String execute(List<String> parameters) {
+    // Implementation here
+    return "";
+  }
+}
+
+class opMinus implements IOperation {
+  @override
+  String execute(List<String> parameters) {
+    // Implementation here
+    return "";
+  }
+}
+
+class opMul implements IOperation {
+  @override
+  String execute(List<String> parameters) {
+    // Implementation here
+    return "";
+  }
+}
+
+class opDiv implements IOperation {
   @override
   String execute(List<String> parameters) {
     // Implementation here

@@ -30,6 +30,7 @@ class stop implements ITransitionMethod {
   @override
   void execute([var data]) {
     print("@stop $data");
+    ClientHelper.instance()?.controller()?.tokens.trace('stop');
   }
 }
 
@@ -41,20 +42,21 @@ class initToken implements ITransitionMethod {
   }
 }
 
-class setToken implements ITransitionMethod {
+class setTokenV1 implements ITransitionMethod {
   @override
   void execute([var data]) {
-    //print("@setToken $data");
-    ClientHelper.instance()?.controller()?.setToken_();
+    //print("@setTokenV1 $data");
+    ClientHelper.instance()?.controller()?.setTokenV1();
     //data?.call();
   }
 }
 
-class setToken2 implements ITransitionMethod {
+class setTokenV2 implements ITransitionMethod {
   @override
   void execute([var data]) {
-    print("@setToken2 $data");
-    data?.call();
+    print("@setTokenV2 $data");
+    ClientHelper.instance()?.controller()?.setTokenV2();
+    //data?.call();
   }
 }
 class accumulateToken implements ITransitionMethod {

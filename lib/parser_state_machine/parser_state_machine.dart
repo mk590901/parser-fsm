@@ -33,20 +33,20 @@ class ParserStateMachine extends BasicStateMachine {
                                                                         Trans(Init(),           ParserState.state_(ParserStates.WAIT_NEXT_CHAR),     onInit()),
                                                                       ]);
 
-    states_[ParserState.state_(ParserStates.ACCUMULATE_TOKEN)]= State([ Trans(InvisibleChar(),  ParserState.state_(ParserStates.END_TOKEN),          setToken()),
-                                                                        Trans(KeywordChar(),    ParserState.state_(ParserStates.END_TOKEN),          setToken2()),
-                                                                        Trans(Eol(),            ParserState.state_(ParserStates.END_TOKEN),          setToken()),
-                                                                        Trans(DetectToken(),    ParserState.state_(ParserStates.END_TOKEN),          setToken()),
+    states_[ParserState.state_(ParserStates.ACCUMULATE_TOKEN)]= State([ Trans(InvisibleChar(),  ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
+                                                                        Trans(KeywordChar(),    ParserState.state_(ParserStates.END_TOKEN),          setTokenV2()),
+                                                                        Trans(Eol(),            ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
+                                                                        Trans(DetectToken(),    ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
                                                                         Trans(ValidChar(),      ParserState.state_(ParserStates.ACCUMULATE_TOKEN),   accumulateToken()),
                                                                         Trans(InvalidChar(),    ParserState.state_(ParserStates.ERROR),              setError()),
                                                                         Trans(Init(),           ParserState.state_(ParserStates.WAIT_NEXT_CHAR),     onInit()),
                                                                       ]);
 
-    states_[ParserState.state_(ParserStates.ACCUMULATE_KEYWORD)] = State([Trans(InvisibleChar(),  ParserState.state_(ParserStates.END_TOKEN),        setToken()),
+    states_[ParserState.state_(ParserStates.ACCUMULATE_KEYWORD)] = State([Trans(InvisibleChar(),  ParserState.state_(ParserStates.END_TOKEN),        setTokenV1()),
                                                                           Trans(KeywordChar(),    ParserState.state_(ParserStates.ACCUMULATE_KEYWORD), accumulateToken()),
-                                                                          Trans(Eol(),            ParserState.state_(ParserStates.END_TOKEN),          setToken()),
-                                                                          Trans(DetectToken(),    ParserState.state_(ParserStates.END_TOKEN),          setToken()),
-                                                                          Trans(ValidChar(),      ParserState.state_(ParserStates.END_TOKEN),          setToken2()),
+                                                                          Trans(Eol(),            ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
+                                                                          Trans(DetectToken(),    ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
+                                                                          Trans(ValidChar(),      ParserState.state_(ParserStates.END_TOKEN),          setTokenV2()),
                                                                           Trans(InvalidChar(),    ParserState.state_(ParserStates.ERROR),              setError()),
                                                                           Trans(Init(),           ParserState.state_(ParserStates.WAIT_NEXT_CHAR),    onInit())
                                                                         ]);

@@ -1,15 +1,11 @@
-
-
-import 'dart:collection';
 import 'dart:core';
-
 import '../core/event.dart';
 import 'interfaces.dart';
 import 'operators.dart';
-import 'parser_bloc.dart';
 import 'parser_events.dart';
 import 'parser_state_machine.dart';
 import 'parser_states.dart';
+import 'tokens/tokens.dart';
 
 class ParserController {
   static const String TAG = "ParserController";
@@ -82,7 +78,7 @@ class ParserController {
 
   void trace2(String message) {
     // Log.e(TAG, message);
-    print('ERROR: $TAG - $message');
+    print('DEBUG: $TAG - $message');
   }
 
   void init() {
@@ -108,8 +104,8 @@ class ParserController {
     return operators?.containsPartially(symbol) ?? false;
   }
 
-  void setToken_() {
-    trace('ParserController.setToken  [$token](${getTokenType(token)})');
+  void setTokenV1() {
+    trace('ParserController.setTokenV1  [$token](${getTokenType(token)})');
     tokens.add(createToken(token));
     setToken("");
     //stateMachine?.postEvent(NextChar());
@@ -117,8 +113,8 @@ class ParserController {
     stateMachine?.postEvent(NextChar());
   }
 
-  void setToken2() {
-    trace2('ParserController.setToken2 [$token](${getTokenType(token)})');
+  void setTokenV2() {
+    trace2('ParserController.setTokenV2 [$token](${getTokenType(token)})');
     tokens.add(createToken(token));
     setToken("");
     setIndex(getIndex() - 1);
@@ -236,12 +232,6 @@ class ParserController {
 //     // Implementation here
 //   }
 //}
-
-class Tokens {
-  void add(IToken token) {
-    // Implementation here
-  }
-}
 
 class TokenOperator implements IToken {
   String name;

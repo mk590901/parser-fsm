@@ -70,7 +70,10 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       //_counter++;
 
-      ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
+      //ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
+      //ParserController parserController = ParserController('ZwLight.Brightness>= 50', Operators());
+      //ParserController parserController = ParserController('ZwLight.Brightness >= (50 + BLE.Light.Brightness)', Operators());
+      ParserController parserController = ParserController('ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators());
       ClientHelper.instance()?.setController(parserController);
       parserController.parse();
 
