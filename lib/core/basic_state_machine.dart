@@ -30,6 +30,7 @@ abstract class BasicStateMachine {
   }
 
   void dispose() {
+    _subscription.cancel();
     _eventController.close();
   }
 

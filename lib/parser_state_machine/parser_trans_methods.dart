@@ -3,8 +3,6 @@ import '../../core/interfaces/i_transition_method.dart';
 class getNextChar implements ITransitionMethod {
   @override
   void execute([var data]) {
-    //print("@getNextChar $data");
-    //ClientHelper.instance()?.controller()?.getNewChar();
     data?.getNewChar();
   }
 }
@@ -29,6 +27,7 @@ class stop implements ITransitionMethod {
   @override
   void execute([var data]) {
     data?.tokens.trace('stop');
+    data?.dispose();
   }
 }
 
