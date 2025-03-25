@@ -104,7 +104,7 @@ class ParserController {
     trace('ParserController.setTokenV1  [$token](${getTokenType(token)})');
     tokens.add(createToken(token));
     setToken("");
-    stateMachine?.postEvent(NextChar());
+    stateMachine?.postEvent(NextChar(this));
   }
 
   void setTokenV2() {
@@ -112,7 +112,7 @@ class ParserController {
     tokens.add(createToken(token));
     setToken("");
     setIndex(getIndex() - 1);
-    stateMachine?.postEvent(NextChar());
+    stateMachine?.postEvent(NextChar(this));
   }
 
   IToken createToken(String tokenName) {
@@ -155,7 +155,7 @@ class ParserController {
   void getNewChar() {
     if (index >= source.length) {
       trace("ParserController.getNewChar->[EOL]");
-      stateMachine?.postEvent(Eol());
+      stateMachine?.postEvent(Eol(this));
       return;
     }
     setCurrentChar(source[index]);
@@ -166,11 +166,11 @@ class ParserController {
 
   Event checkCharacter(String currentChar) {
     if (currentChar.codeUnitAt(0) <= 32) {
-      return Eol();
+      return Eol(this);
     } else if (charIsKeywordChar(currentChar)) {
-      return KeywordChar();
+      return KeywordChar(this);
     } else {
-      return ValidChar();
+      return ValidChar(this);
     }
   }
 
@@ -179,6 +179,6 @@ class ParserController {
   }
 
   void parse() {
-    stateMachine?.postEvent(NextChar());
+    stateMachine?.postEvent(NextChar(this));
   }
 }

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'client_helper.dart';
 import 'parser_state_machine/operators.dart';
 import 'parser_state_machine/parser_controller.dart';
 
 void main() {
-  ClientHelper.initInstance();
   runApp(const MyApp());
 }
 
@@ -74,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
       //ParserController parserController = ParserController('ZwLight.Brightness>= 50', Operators());
       //ParserController parserController = ParserController('ZwLight.Brightness >= (50 + BLE.Light.Brightness)', Operators());
       ParserController parserController = ParserController('ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators());
-      ClientHelper.instance()?.setController(parserController);
       parserController.parse();
 
     });

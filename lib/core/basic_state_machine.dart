@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import '../core/event.dart';
 import '../core/state.dart';
 import 'transaction.dart';
