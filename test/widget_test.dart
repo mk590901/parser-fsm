@@ -16,9 +16,9 @@ void main() {
     expect(parserController,isNotNull);
     parserController.parse();
 
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 1));
 
-    expect(parserController.token,'');
+    expect(parserController.tokens.size(),3);
 
   });
 
