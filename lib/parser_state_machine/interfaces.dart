@@ -1,15 +1,7 @@
-abstract class IFunctor {
-  void execute();
-}
-
-abstract class IOperation {
-  String execute(List<String> parameters);
-}
-
-enum OperationType {
+enum Type {
   Unknown,
-  BinaryOperation,
-  UnaryOperation,
+  Operand,
+  Operator,
 }
 
 abstract class IToken {
@@ -26,8 +18,18 @@ abstract class IToken {
   bool isVariable();
 }
 
-enum Type {
+enum    OperationType {
   Unknown,
-  Operand,
-  Operator,
+  BinaryOperation,
+  UnaryOperation
 }
+
+abstract class IOperation {
+  String  execute(List<String> parameters);
+}
+
+abstract class  IFunctor {
+  void execute();
+}
+
+

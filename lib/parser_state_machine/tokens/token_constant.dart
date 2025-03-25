@@ -1,4 +1,5 @@
 import '../interfaces.dart';
+import 'token.dart';
 
 class TokenConstant extends Token {
   TokenConstant(String name) : super(name, Type.Operand);
@@ -27,35 +28,4 @@ class TokenConstant extends Token {
   bool isVariable() {
     return false;
   }
-}
-
-class Token {
-  String name;
-  Type type;
-
-  Token(this.name, this.type);
-
-  String getName() => name;
-
-  void setName(String name) {
-    this.name = name;
-  }
-
-  Type getType() => type;
-
-  void setType(Type type) {
-    this.type = type;
-  }
-
-  String toText() {
-    return '${getName().padRight(24)}\t${getType()}';
-  }
-
-  bool isOperand() => true;
-
-  bool isOperator() => false;
-
-  bool isConstant() => true;
-
-  bool isVariable() => false;
 }

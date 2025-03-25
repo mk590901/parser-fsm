@@ -1,5 +1,5 @@
 import '../interfaces.dart';
-import '../parser_controller.dart';
+import 'token_variable.dart';
 
 class Tokens {
   static const String TAG = "ParserController";
@@ -52,7 +52,7 @@ class Tokens {
     print('------- $text -------');
     for (int i = 0; i < size(); i++) {
       IToken token = get(i);
-      String text = token.toText();
+      //String text = token.toText();
       print('(${i.toString().padLeft(2)})\t${token.toText()}');
     }
     print('+++++++ $text +++++++');

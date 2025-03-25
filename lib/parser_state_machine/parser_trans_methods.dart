@@ -1,6 +1,5 @@
 import '../../core/interfaces/i_transition_method.dart';
 import '../client_helper.dart';
-import 'parser_controller.dart';
 
 class getNextChar implements ITransitionMethod {
   @override

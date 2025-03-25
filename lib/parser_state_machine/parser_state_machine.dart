@@ -89,8 +89,4 @@ class ParserStateMachine extends BasicStateMachine {
     // TODO: implement setFilter
   }
 
-  // void postEvent(Event event) {
-  // }
-
-
 }
