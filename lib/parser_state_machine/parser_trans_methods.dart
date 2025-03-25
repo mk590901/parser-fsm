@@ -48,17 +48,12 @@ class setTokenV1 implements ITransitionMethod {
 class setTokenV2 implements ITransitionMethod {
   @override
   void execute([var data]) {
-    //print("@setTokenV2 $data");
-    //ClientHelper.instance()?.controller()?.setTokenV2();
-    //data?.call();
     data?.setTokenV2();
   }
 }
 class accumulateToken implements ITransitionMethod {
   @override
   void execute([var data]) {
-    //print("@accumulateToken $data");
-    //ClientHelper.instance()?.controller()?.accumulateToken();
     data?.accumulateToken();
   }
 }
