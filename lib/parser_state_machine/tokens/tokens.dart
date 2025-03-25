@@ -52,7 +52,6 @@ class Tokens {
     print('------- $text -------');
     for (int i = 0; i < size(); i++) {
       IToken token = get(i);
-      //String text = token.toText();
       print('(${i.toString().padLeft(2)})\t${token.toText()}');
     }
     print('+++++++ $text +++++++');

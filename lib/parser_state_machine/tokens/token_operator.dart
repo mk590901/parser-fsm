@@ -6,6 +6,11 @@ class TokenOperator extends Token {
   TokenOperator(String name) : super(name, Type.Operator);
 
   @override
+  String toText() {
+    return '${getName().padRight(24)}\t${getType()}\tOperator';
+  }
+
+  @override
   bool isOperand() {
     return false;
   }
