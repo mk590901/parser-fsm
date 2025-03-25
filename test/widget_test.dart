@@ -15,14 +15,11 @@ void main() {
     ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
     expect(parserController,isNotNull);
     parserController.parse();
+
+    await Future.delayed(Duration(seconds: 5));
+
     expect(parserController.token,'');
 
-    Future.delayed(Duration(seconds: 5));
-
-
-    //parserController.dispose();
-    // int x = 0;
-    // int y = x;
   });
 
 }
