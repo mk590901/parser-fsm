@@ -1,5 +1,4 @@
 import 'dart:core';
-import '../core/basic_state_machine.dart';
 import '../core/event.dart';
 import 'interfaces.dart';
 import 'operators.dart';
