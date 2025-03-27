@@ -42,7 +42,7 @@ class ParserStateMachine extends BasicStateMachine {
                                                                         Trans(Init(),           ParserState.state_(ParserStates.WAIT_NEXT_CHAR),     onInit()),
                                                                       ]);
 
-    states_[ParserState.state_(ParserStates.ACCUMULATE_KEYWORD)] = State([Trans(InvisibleChar(),  ParserState.state_(ParserStates.END_TOKEN),        setTokenV1()),
+    states_[ParserState.state_(ParserStates.ACCUMULATE_KEYWORD)] = State([Trans(InvisibleChar(),  ParserState.state_(ParserStates.END_TOKEN),         setTokenV1()),
                                                                           Trans(KeywordChar(),    ParserState.state_(ParserStates.ACCUMULATE_KEYWORD), accumulateToken()),
                                                                           Trans(Eol(),            ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
                                                                           Trans(DetectToken(),    ParserState.state_(ParserStates.END_TOKEN),          setTokenV1()),
