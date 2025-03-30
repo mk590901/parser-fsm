@@ -1,4 +1,5 @@
 import 'dart:core';
+import '../bloc/list_bloc.dart';
 import '../core/event.dart';
 import 'interfaces.dart';
 import 'operators.dart';
@@ -21,11 +22,14 @@ class ParserController {
   IFunctor? result;
   Tokens tokens = Tokens();
 
+  ListBloc? bloc;
+
   ParserStateMachine? stateMachine;// = ParserStateMachine(ParserStates.IDLE.index);
 
-  ParserController(this.source, Operators this.operators) {
+  ParserController(this.bloc, this.source, Operators this.operators) {
     stateMachine = ParserStateMachine(ParserStates.IDLE.index);
     stateMachine?.setController(this);
+    tokens.setController(this);
     init();
   }
 
@@ -179,5 +183,9 @@ class ParserController {
 
   void parse() {
     stateMachine?.postEvent(NextChar(this));
+  }
+
+  void addLine(String line) {
+    bloc?.add(AddItemEvent(line));
   }
 }

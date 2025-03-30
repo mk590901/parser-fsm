@@ -1,7 +1,121 @@
 import 'package:flutter/material.dart';
-import 'parser_state_machine/operators.dart';
-import 'parser_state_machine/parser_controller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/list_bloc.dart';
 
+void main() {
+  runApp(const MaterialApp(
+    home: ListPage(),
+  ));
+}
+
+class ListPage extends StatelessWidget {
+  const ListPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => ListBloc(),
+      child: Scaffold(
+        appBar: AppBar(title: const Text('List Page')),
+        body: Column(
+          children: [
+            // ComboBox
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: BlocBuilder<ListBloc, ListState>(
+                builder: (context, state) {
+                  return DropdownButtonFormField<String>(
+                    value: state.selectedOption,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    ),
+                     items: [
+                      'ZwLight.Brightness >= 50',
+                      'ZwLight.Brightness>= 50',
+                      'ZwLight.Brightness >= (50 + BLE.Light.Brightness)',
+                      'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)'
+                    ].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      if (newValue != null) {
+                        context.read<ListBloc>().add(SelectOptionEvent(newValue));
+                        context.read<ListBloc>().add(ClearListEvent());
+                      }
+                    },
+                  );
+                },
+              ),
+            ),
+            // Scrollable List with Buttons
+            Expanded(
+              child: BlocBuilder<ListBloc, ListState>(
+                builder: (context, state) {
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: state.items.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(state.items[index], style: TextStyle(fontSize: 12)),
+                            );
+                          },
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Wrap(
+                          spacing: 8.0,
+                          runSpacing: 8.0,
+                          alignment: WrapAlignment.center,
+                          children: [
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     context.read<ListBloc>().add(AddItemEvent());
+                            //   },
+                            //   child: const Text('Add Item'),
+                            // ),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     context.read<ListBloc>().add(ClearListEvent());
+                            //     print ('Option->[${context.read<ListBloc>().state.selectedOption}]');
+                            //
+                            //   },
+                            //   child: const Text('Clear'),
+                            // ),
+                            ElevatedButton(
+                              onPressed: () {
+                                context.read<ListBloc>().add(PerformActionEvent());
+                                //print ('Option->[${context.read<ListBloc>().state.selectedOption}]');
+                              },
+                              child: const Text('Perform Action'),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/*
 void main() {
   runApp(const MyApp());
 }
@@ -129,3 +243,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+ */

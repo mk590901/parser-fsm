@@ -12,7 +12,7 @@ import 'package:parser/parser_state_machine/parser_controller.dart';
 void main() {
 // All tests
   test('ParserController One', () async {
-    ParserController parserController = ParserController('ZwLight.Brightness >= 50', Operators());
+    ParserController parserController = ParserController(null, 'ZwLight.Brightness >= 50', Operators());
     expect(parserController,isNotNull);
     parserController.parse();
 
@@ -23,7 +23,7 @@ void main() {
   });
 
   test('ParserController Two', () async {
-    ParserController parserController = ParserController('ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators());
+    ParserController parserController = ParserController(null, 'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)', Operators());
     expect(parserController,isNotNull);
     parserController.parse();
 
