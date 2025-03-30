@@ -47,12 +47,7 @@ class ParserPage extends StatelessWidget {
                       contentPadding: EdgeInsets.symmetric(horizontal: 10),
                     ),
                     items:
-                        [
-                          'ZwLight.Brightness >= 50',
-                          'ZwLight.Brightness>= 50',
-                          'ZwLight.Brightness >= (50 + BLE.Light.Brightness)',
-                          'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)',
-                        ].map((String value) {
+                        ListBloc.items.map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(

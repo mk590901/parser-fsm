@@ -37,8 +37,16 @@ class ListState {
 
 // BLoC
 class ListBloc extends Bloc<ListEvent, ListState> {
+
+  static final List<String> items = [
+      'ZwLight.Brightness >= 50',
+      'ZwLight.Brightness>= 50',
+      'ZwLight.Brightness >= (50 + BLE.Light.Brightness)',
+      'ZwLight.Brightness >= (50+4*8-BLE.Light.Brightness)',
+  ];
+
   ListBloc()
-    : super(ListState(selectedOption: 'ZwLight.Brightness >= 50', items: [])) {
+    : super(ListState(selectedOption: /*'ZwLight.Brightness >= 50'*/items[0], items: [])) {
     on<SelectOptionEvent>((event, emit) {
       emit(state.copyWith(selectedOption: event.option));
     });
