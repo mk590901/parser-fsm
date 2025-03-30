@@ -11,7 +11,6 @@ class onInit implements ITransitionMethod {
   @override
   void execute([var data]) {
     print("@onInit $data");
-    //data?.call();
   }
 }
 
@@ -19,7 +18,6 @@ class setError implements ITransitionMethod {
   @override
   void execute([var data]) {
     print("@setError $data");
-    //data?.call();
   }
 }
 
