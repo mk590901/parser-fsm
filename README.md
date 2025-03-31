@@ -17,7 +17,7 @@ The set of classes consists of event classes, a basic state machine, and a trans
 The application is a Flutter app with a predefined set of arithmetic expressions. They can be selected using a combo box and parsed by pressing the parse button. The result of parsing is a list of tokens indicating the type and classification.
 
 ## Note
-Note. The two applications Parser HSM and Parser FSM are made in the same style and from the GUI point of view are twin brothers. That is, they completely coincide except for the engine used. In fact, the main goal of these projects was the idea to show that the same tasks can be solved with both FSM and HSM. What exactly to choose is a matter of taste and sympathy of the developer.
+Note. The two applications Parser HSM (https://github.com/mk590901/parser-hsm/) and Parser FSM are made in the same style and from the GUI point of view are twin brothers. That is, they completely coincide except for the engine used. In fact, the main goal of these projects was the idea to show that the same tasks can be solved with both FSM and HSM. What exactly to choose is a matter of taste and sympathy of the developer.
 
 ## Movie
 
