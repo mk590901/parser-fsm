@@ -1,16 +1,11 @@
-# parser
+# # Parser-FSM
 
-A new Flutter project.
+The application demonstrates the work of a lexical parser based on a finite (flat) state machine.
 
-## Getting Started
+## Introduction
+A __finite state machine__ allows one to simplify the number of operations on text during lexical parsing of an arithmetic expression and replace the logic of lexeme detection by transitions from state to state under the action of events.
 
-This project is a starting point for a Flutter application.
+## State Machine
+Below is the parser's finite (flat) state machine. It is somewhat redundant, but fairly accurately reflects the processing of all possible variants of the lexemes encountered.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Uploading parser_fsm_2.svg…]()
